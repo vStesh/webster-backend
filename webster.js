@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const {SERVER, DB} = require('./config');
 const app = express();
 const wwwDir = '../www';
-const clientDir = '../client';
+const clientDir = '../client/build';
 
 app.use(express.json({ extended: true }));
 app.use(cookieParser())
@@ -20,11 +20,11 @@ if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev') {
     app.use('/', express.static(wwwDir));
 
     app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, '../www', 'index.html'));
+        res.sendFile(path.join(__dirname, wwwDir, 'index.html'));
     });
 
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client', 'index.html'));
+        res.sendFile(path.join(__dirname, clientDir, 'index.html'));
     });
 }
 
