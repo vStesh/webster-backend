@@ -2,10 +2,10 @@
   "name": "webster-backend",
   "version": "1.0.0",
   "description": "SOS team final project Ucode IT Academy",
-  "main": "server.js",
+  "main": "webster.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js"
+    "start": "node webster.js",
+    "server": "nodemon webster.js"
   },
   "repository": {
     "type": "git",
