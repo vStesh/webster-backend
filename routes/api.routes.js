@@ -7,5 +7,7 @@ router.use('/auth', require('./api/auth.routes'));
 router.use('/user', require('./api/user.routes'));
 router.use('/event', authMiddleware, require('./api/event.routes'));
 router.use('/organize', authMiddleware, require('./api/organize.routes'));
-
+router.get('/', (req, res) => {
+    res.send('home api');
+});
 module.exports = router;
