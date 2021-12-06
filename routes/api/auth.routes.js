@@ -1,3 +1,4 @@
+
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { register, login, reset, change, logout, refresh, getUsers } = require('../../controllers/auth.controller');

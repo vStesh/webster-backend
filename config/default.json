@@ -1,13 +1,5 @@
 {
   "port": 5000,
   "protocol": "http",
-  "host": "localhost",
-  "mongooseUri": "mongodb+srv://Users:USERS@cluster0.knn4g.mongodb.net/registration?retryWrites=true&w=majority",
-  "dbMongoUser": "Users",
-  "dbMongoPassword": "USERS",
-  "jwtAccessSecret": "jwt-access-secret-key",
-  "jwtRefreshSecret": "jwt-refresh-secret-key",
-  "jwtResetSecret": "jwt-reset-secret-key",
-  "email": "mironukarik1927@gmail.com",
-  "password": "Myronuik1927"
+  "host": "localhost"
 }

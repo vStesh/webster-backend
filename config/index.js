@@ -1,4 +1,5 @@
 const config = require('config');
+require('dotenv').config();
 
 module.exports = {
     SERVER: {
@@ -8,28 +9,18 @@ module.exports = {
     },
     DB: {
         MONGOOSE: {
-            URI: config.get('mongooseUri')
+            URI: process.env.DB_URI
         }
     },
     VALIDATE: {
         MIN_LENGTH_PASSWORD: 6
     },
-    JWT_ACCESS_SECRET: config.get('jwtAccessSecret'),
-    JWT_REFRESH_SECRET: config.get('jwtRefreshSecret'),
-    JWT_RESET_SECRET: config.get('jwtResetSecret'),
+    JWT_ACCESS_SECRET: process.env.JWT_ACCESS_SECRET,
+    JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET,
+    JWT_RESET_SECRET: process.env.JWT_REFRESH_SECRET,
     NODEMAILER: {
-        EMAIL: config.get('email'),
-        PASSWORD: config.get('password')
+        EMAIL: process.env.EMAIL_LOGIN,
+        PASSWORD: process.env.EMAIL_PASSWORD
     },
     LIVE_TIME_TOKEN: 5 * 60000
 }
-
-
-// "mongooseUri": "mongodb+srv://avenger:7YQyH3hrWrUjq-U@cluster0.nr51l.mongodb.net/dbEM?retryWrites=true&w=majority",
-// "dbMongoUser": "avenger",
-// "dbMongoPassword": "7YQyH3hrWrUjq-U",
-
-
-// "mongooseUri": "mongodb+srv://Users:USERS@cluster0.knn4g.mongodb.net/registration?retryWrites=true&w=majority",
-// "dbMongoUser": "Users",
-// "dbMongoPassword": "USERS",

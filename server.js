@@ -20,7 +20,6 @@ if(process.env.NODE_ENV === 'production') {
     });
 }
 
-// app.use('', require('./routes/http.routes'));
 
 async function start() {
     try {
