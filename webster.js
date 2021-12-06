@@ -16,12 +16,12 @@ app.use('/api', require('./routes/api.routes'));
 
 if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev') {
     // app.use('/', express.static(path.join(__dirname, 'client', 'build')));
-    app.use('/my', express.static(clientDir));
-    app.use('/', express.static(wwwDir));
+    app.use('/', express.static(clientDir));
+    // app.use('/', express.static(wwwDir));
 
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, wwwDir, 'index.html'));
-    });
+    // app.get('/', (req, res) => {
+    //     res.sendFile(path.join(__dirname, wwwDir, 'index.html'));
+    // });
 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, clientDir, 'index.html'));
