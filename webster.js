@@ -8,13 +8,14 @@ const {SERVER, DB} = require('./config');
 const app = express();
 const wwwDir = '../www';
 const clientDir = '../client/build';
-const cors = require('../../middlewares/cors');
+// const cors = require('../../middlewares/cors');
 
 
 app.use(express.json({ extended: true }));
 app.use(cookieParser())
 
-app.use('/api', cors, require('./routes/api.routes'));
+// app.use('/api', cors, require('./routes/api.routes'));
+app.use('/api', require('./routes/api.routes'));
 
 if(process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev') {
     // app.use('/', express.static(path.join(__dirname, 'client', 'build')));

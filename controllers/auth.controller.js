@@ -8,6 +8,8 @@ const { LIVE_TIME_TOKEN } = require('../config');
 const { getRes } = require('../service/getResponse');
 
 exports.register = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*"    );
+
     try {
         console.log(req.body);
         const errors = validationResult(req);
