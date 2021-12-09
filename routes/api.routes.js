@@ -10,4 +10,7 @@ router.use('/organize', authMiddleware, require('./api/organize.routes'));
 router.get('/', (req, res) => {
     res.send('home api');
 });
+router.get('*', (req, res) => {
+    res.send('Error! Endpoint or method not valid.');
+});
 module.exports = router;
