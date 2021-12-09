@@ -10,6 +10,13 @@ const wwwDir = '../www';
 const clientDir = '../client/build';
 // const cors = require('../../middlewares/cors');
 
+app.all('*', function(req, res, next) {
+    let origin = req.get('origin');
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
 app.use(express.json({ extended: true }));
 app.use(cookieParser())
