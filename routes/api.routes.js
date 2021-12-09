@@ -3,6 +3,12 @@ const authMiddleware = require('../middlewares/auth-middleware');
 
 const router = Router();
 
+router.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
+    next();
+});
+
 router.use('/auth', require('./api/auth.routes'));
 router.use('/user', require('./api/user.routes'));
 router.use('/event', authMiddleware, require('./api/event.routes'));

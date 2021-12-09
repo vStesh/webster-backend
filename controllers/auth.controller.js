@@ -8,7 +8,7 @@ const { LIVE_TIME_TOKEN } = require('../config');
 const { getRes } = require('../service/getResponse');
 
 exports.register = async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"    );
+    // res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"    );
     console.log(req);
     console.log(res);
     try {
