@@ -1,7 +1,7 @@
 
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { register, login, reset, change, logout, refresh, getUsers } = require('../../controllers/auth.controller');
+const { register, login, reset, change, logout, refresh, getUsers, getUser } = require('../../controllers/auth.controller');
 const authMiddleware = require('../../middlewares/auth-middleware');
 
 const router = Router();
@@ -37,4 +37,6 @@ router.get('/refresh', refresh)
 // /api/auth/users
 router.get('/users', authMiddleware, getUsers)
 
+// api/auth/user
+router.get('/user', authMiddleware, getUser);
 module.exports = router;

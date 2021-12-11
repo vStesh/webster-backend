@@ -1,13 +1,8 @@
 const {Router} = require('express');
 const authMiddleware = require('../middlewares/auth-middleware');
+const {getRes} = require("../service/getResponse");
 
 const router = Router();
-
-// router.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
-//     next();
-// });
 
 router.use('/auth', require('./api/auth.routes'));
 router.use('/user', require('./api/user.routes'));
@@ -17,6 +12,6 @@ router.get('/', (req, res) => {
     res.send('home api');
 });
 router.get('*', (req, res) => {
-    res.send('Error! Endpoint or method not valid.');
+    res.status(404).json(getRes(404));
 });
 module.exports = router;
