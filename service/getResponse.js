@@ -5,7 +5,7 @@ exports.getRes = (status, obj = {}) => {
     if(!!status) {
         result.error = [getError(status)];
         if (obj?.error) {
-            result.error.push(obj.error);
+            Array.isArray(obj.error) ? result.error.push(...obj.error) : result.error.push(obj.error);
         }
     }
     if (obj?.message) {

@@ -14,7 +14,7 @@ exports.register = async (req, res) => {
         console.log(errors);
         if(!errors.isEmpty()) {
             return res.status(400).json(getRes(10, {
-                errors: errors.array(),
+                error: errors.array(),
                 message: 'Incorrect data on registration'
             }));
         }
