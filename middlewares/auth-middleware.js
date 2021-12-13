@@ -4,6 +4,8 @@ const { getRes } = require('../service/getResponse');
 module.exports = function (req, res, next) {
     try {
         const authorizationHeader = req.headers.authorization;
+        console.log('authorizationHeader');
+        console.log(authorizationHeader);
         if (!authorizationHeader) {
             return res.status(403).json(getRes(1,{message: 'Error authorization'}));
         }

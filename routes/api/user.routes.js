@@ -4,7 +4,7 @@ const  authMiddleware  = require('../../middlewares/auth-middleware');
 const router = Router();
 
 // /api/user/
-router.get('/', getAll);
+// router.get('/', getAll);
 // /api/user/:id
 router.put('/:id', authMiddleware, updatedData)
 

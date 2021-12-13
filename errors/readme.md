@@ -20,6 +20,8 @@
 
 ### 22. The password is the same as the old one.
 
+### 23. Update user error.
+
 ### 30. Token not generated.
 
 ### 31. Token not found.
