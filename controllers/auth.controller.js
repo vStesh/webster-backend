@@ -9,7 +9,6 @@ const { getRes } = require('../service/getResponse');
 
 exports.register = async (req, res) => {
     try {
-        // console.log(req.body);
         const errors = validationResult(req);
         console.log(errors);
         if(!errors.isEmpty()) {

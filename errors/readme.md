@@ -26,6 +26,12 @@
 
 ### 31. Token not found.
 
+### 32. Service not found.
+
+### 33. You aren't the owner this service
+
+### 34. Order not found.
+
 ## Data base errors
 
 ### 50. No database connection.

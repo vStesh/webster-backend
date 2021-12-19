@@ -5,9 +5,9 @@ const {getRes} = require("../service/getResponse");
 const router = Router();
 
 router.use('/auth', require('./api/auth.routes'));
-router.use('/user', require('./api/user.routes'));
-router.use('/event', authMiddleware, require('./api/event.routes'));
-router.use('/organize', authMiddleware, require('./api/organize.routes'));
+router.use('/user', authMiddleware, require('./api/user.routes'));
+router.use('/service', authMiddleware, require('./api/service.routes'));
+router.use('/orders', authMiddleware, require('./api/orders.routes'));
 router.get('/', (req, res) => {
     res.send('home api');
 });
