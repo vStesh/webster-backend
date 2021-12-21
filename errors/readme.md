@@ -26,7 +26,15 @@
 
 ### 31. Token not found.
 
+<<<<<<< HEAD
 ### 33. Token expired!
+=======
+### 32. Service not found.
+
+### 33. You aren't the owner this service
+
+### 34. Order not found.
+>>>>>>> origin/Yarik
 
 ## Data base errors
 

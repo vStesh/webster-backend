@@ -6,9 +6,8 @@ const mongoose = require('mongoose');
 
 const {SERVER, DB} = require('./config');
 const app = express();
-const wwwDir = '../www';
+// const wwwDir = '../www';
 const clientDir = '../client/build';
-// const cors = require('../../middlewares/cors');
 
 app.all('*', function(req, res, next) {
     let origin = req.get('origin');
