@@ -26,6 +26,8 @@
 
 ### 31. Token not found.
 
+### 33. Token expired!
+
 ## Data base errors
 
 ### 50. No database connection.
