@@ -158,6 +158,9 @@ exports.refresh = async (req, res) => {
 exports.getUsers = async (req, res) => {
     try {
         const users = await User.find()
+        if (!users) {
+            return res.status(404).json(getRes(4, { message: 'Users not found' }))
+        }
         return res.status(200).json(getRes(0,{data: users}))
     } catch (err) {
         return res.status(400).json(getRes(100,{error: err.message}))

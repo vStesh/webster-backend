@@ -6,13 +6,13 @@ const ordersMiddleware = require('../../middlewares/orders-middleware');
 const router = Router();
 
 // /api/orders/createOrder
-router.post('/create', createOrder);
+router.post('/', createOrder);
 // /api/orders/getOrder
-router.get('/getOrder/:id', getOrder);
+router.get('/:id', getOrder);
 // /api/orders/updateOrder
-router.put('/update/:id', ordersMiddleware, updateOrder);
+router.put('/:id', ordersMiddleware, updateOrder);
 // /api/orders/deleteOrder
-router.delete('/delete/:id', ordersMiddleware, deleteOrder);
+router.delete('/:id', ordersMiddleware, deleteOrder);
 
 
 module.exports = router;

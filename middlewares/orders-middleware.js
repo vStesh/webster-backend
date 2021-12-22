@@ -1,5 +1,5 @@
 const User = require('../models/User');
-const Orders = require('../models/Orders');
+const Order = require('../models/Order');
 const { getRes } = require('../service/getResponse');
 const tokenService = require('../service/token-service');
 
@@ -15,7 +15,7 @@ module.exports = async function (req, res, next) {
         if (!user) {
             return res.status(401).json(getRes(2, { message: 'User not found ' }))
         }
-        const order = await Orders.findOne({ _id: idOrder.id }).populate('user')
+        const order = await Order.findOne({ _id: idOrder.id }).populate('user')
         if (!order) {
             return res.status(401).json(getRes(34, { message: 'Order not found' }))
         }
