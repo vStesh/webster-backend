@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const OrderPhotoSchema = new Schema({
-    order: { type: Schema.Types.ObjectId, ref: 'Orders' },
+    order: { type: Schema.Types.ObjectId, ref: 'Order' },
     photo: { type: Schema.Types.ObjectId, ref: 'Photo' },
     settings: {
         type: Schema.Types.ObjectId, ref: 'Paper',
@@ -12,7 +12,7 @@ const OrderPhotoSchema = new Schema({
     },
     createdAt: {type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now },
-    deletedAt: {type:Date, default:null, nullable}
+    deletedAt: { type: Date, default: null }
 })
 
 module.exports = model('OrderPhoto', OrderPhotoSchema)

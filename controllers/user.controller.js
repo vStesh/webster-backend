@@ -1,6 +1,25 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const tokenService = require('../service/token-service');
+const fileService = require('../service/file-service');
 const { getRes } = require('../service/getResponse');
+
+
+exports.createProfile = async (req, res) => {
+    try {
+        const { photo } = req.files
+        const { refreshToken } = req.cookies
+        const userData = tokenService.validateRefreshToken(refreshToken)
+        const user = await User.findById({ _id: userData.id })
+        const fileSave = fileService.saveFile(photo)
+        user.photo = fileSave
+        await user.save()
+        return res.status(201).json(getRes(0, { data: user }))
+    } catch (err) {
+        return res.status(401).json(getRes(100, { error: err.message }))
+    }
+}
+
 
 exports.getAll = async (req, res) => {
     try {

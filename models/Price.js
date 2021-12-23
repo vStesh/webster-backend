@@ -5,11 +5,11 @@ const PriceSchema = new Schema({
     paper: { type: Schema.Types.ObjectId, ref: 'Paper' },
     size: { type: Schema.Types.ObjectId, ref: 'Size' },
     type: { type: Schema.Types.ObjectId, ref: 'Type' },
-    price: { type: Integer, required: true },
+    price: { type: Number, required: true },
     currency: { enum: ['UAH'], default: 0 },
     createdAt: {type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now },
-    deletedAt: {type:Date, default:null, nullable}
+    deletedAt: { type: Date, default: null }
 })
 
 module.exports = model('Price', PriceSchema)

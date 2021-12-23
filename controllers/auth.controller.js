@@ -20,7 +20,7 @@ exports.register = async (req, res) => {
         const { email, password, confirm, name } = req.body
         const candidate = await User.findOne({ email })
             if(candidate) {
-                return res.status(400).json(getRes(20,{message: "Such a user already exists"}));
+                return res.status(400).json(getRes(20, { message: "Such a user already exists" }));
             } else {
                 if (password !== confirm) {
                     return res.status(400).json(getRes(21, { message: 'Password does not coincide with confirm' }))
