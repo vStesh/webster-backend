@@ -4,7 +4,7 @@ const { createSize, getSize, updateSize, deleteSize } = require('../../controlle
 const router = Router();
 
 router.post('/', createSize);
-router.put('/:id', getSize);
+router.get('/:id', getSize);
 router.put('/:id', updateSize);
 router.delete('/:id', deleteSize);
 

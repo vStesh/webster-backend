@@ -4,7 +4,7 @@ const { createPrice, getPrice, updatePrice, deletePrice } = require('../../contr
 const router = Router();
 
 router.post('/', createPrice);
-router.put('/:id', getPrice);
+router.get('/:id', getPrice);
 router.put('/:id', updatePrice);
 router.delete('/:id', deletePrice);
 

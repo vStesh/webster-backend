@@ -4,7 +4,7 @@ const {createPhoto, getPhoto, updatePhoto, deletePhoto} = require('../../control
 const router = Router();
 
 router.post('/', createPhoto)
-router.put('/:id', getPhoto)
+router.get('/:id', getPhoto)
 router.put('/:id', updatePhoto)
 router.delete('/:id', deletePhoto) 
 

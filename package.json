@@ -28,6 +28,7 @@
     "hbs": "^4.1.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
+    "mongoose-serial": "^1.0.4",
     "nodemailer": "^6.7.1",
     "uuid": "^8.3.2"
   },

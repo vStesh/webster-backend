@@ -6,6 +6,7 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     createdAt: {type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now },
+    deleteAt: { type: Date, default: null},
     resetToken: { type: String, default: '' },
     resetTokenExp: { type: Date, default: '' },
     photo: { type: String, default: '' }

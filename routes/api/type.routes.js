@@ -4,7 +4,7 @@ const { createType, getType, updateType, deleteType } = require('../../controlle
 const router = Router();
 
 router.post('/', createType);
-router.put('/:id', getType);
+router.get('/:id', getType);
 router.put('/:id', updateType);
 router.delete('/:id', deleteType);
 

@@ -7,7 +7,7 @@ const PhotoSchema = new Schema({
     comment: { type: String, required: true },
     createdAt: {type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now },
-    deletedAt: {type:Date, default:null }
+    deletedAt: { type: Date, default: null }
 })
 
 module.exports = model('Photo', PhotoSchema);

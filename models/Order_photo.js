@@ -8,7 +8,7 @@ const OrderPhotoSchema = new Schema({
         type: Schema.Types.ObjectId, ref: 'Size',
         type: Schema.Types.ObjectId, ref: 'Type',
         type: Schema.Types.ObjectId, ref: 'Price',
-        type: Date, required: true
+        type: Date, default: Date.now
     },
     createdAt: {type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now },

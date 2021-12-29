@@ -59,16 +59,17 @@ exports.deletedData = async (req, res) => {
         const idUser = req.params.id
         const { refreshToken } = req.cookies
         const userData = tokenService.validateRefreshToken(refreshToken)
-        const user = await User.findByIdAndDelete(idUser)
+        const user = await User.findById(idUser)
         if (!user) {
             return res.status(404).json(getRes(2, { message: 'User not found' }));
         }
         const tokenModel = await Token.findOneAndDelete({ user: userData.id })
-        if (!tokenModel) {
-            return res.status(400).json(getRes(30, {message: 'Token not generated'}))
-        }
-        res.clearCookie('refreshToken')
-        return res.status(200).json(getRes(0, { message: 'User has been successfully deleted', data: user }))
+            if (!tokenModel) {
+                return res.status(400).json(getRes(30, {message: 'Token not generated'}))
+            }
+            user.deleteAt = Date.now()
+            res.clearCookie('refreshToken')
+            return res.status(200).json(getRes(0, { message: 'User has been successfully deleted', data: user }))
     } catch (err) {
         return res.status(401).json(getRes(100, { error: err.message }))
     }

@@ -4,7 +4,7 @@ const {createPaper,  getPaper, updatePaper, deletePaper} = require('../../contro
 const router = Router();
 
 router.post('/', createPaper);
-router.put('/:id', getPaper);
+router.get('/:id', getPaper);
 router.put('/:id', updatePaper);
 router.delete('/:id', deletePaper);
 
