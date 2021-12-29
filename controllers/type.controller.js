@@ -37,7 +37,7 @@ exports.updateType = async (req, res) => {
 exports.deleteType = async (req, res) => {
     try {
         const idType = req.params
-        const type = await Type.findById(idType.id)
+        const type = await Type.findById(idType)
         if (!type) {
             return res.status(404).json(getRes(404, { message: 'Type not found' }))
         }

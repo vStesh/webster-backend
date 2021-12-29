@@ -14,6 +14,9 @@ exports.getPrice = async (req, res) => {
     try {
         const idPrice = req.params
         const price = await Price.findById(idPrice)
+        if (!price) {
+            return res.status(404).json(getRes(404, { message: 'Price not found' }))
+        }
         return res.status(200).json(getRes(0, { data: price}))
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))
@@ -36,7 +39,7 @@ exports.deletePrice = async (req, res) => {
         const idPrice = req.params
         const price = await Price.findById(idPrice)
         if (!price) {
-            return res.status(404).json(getRes(32, { message: 'Price not found' }))
+            return res.status(404).json(getRes(404, { message: 'Price not found' }))
         }
         price.deleteAt = Date.now()
         await price.save()

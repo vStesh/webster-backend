@@ -30,7 +30,7 @@ exports.getAllService = async (req, res) => {
     try {
         const allService = await Service.find();
         if (!allService) {
-            return res.status(404).json(getRes(32, { message: 'Service not found' }))
+            return res.status(404).json(getRes(32, { message: 'Services not found' }))
         }
         return res.status(200).json(getRes(0, {data: allService}))
     } catch (err) {
