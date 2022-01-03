@@ -6,9 +6,11 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 const {SERVER, DB} = require('./config');
+const config = require("./config");
 const app = express();
 // const wwwDir = '../www';
 const clientDir = '../client/build';
+const imageDir = '../img';
 
 app.all('*', function(req, res, next) {
     let origin = req.get('origin');
@@ -20,8 +22,10 @@ app.all('*', function(req, res, next) {
     next();
 });
 
+console.log(path.resolve(config.STORAGE_FILES, 'photos'));
+
 app.use(express.json({ extended: true }));
-app.use(express.static('static'));
+// app.use('/img', express.static(imageDir));
 app.use(fileUpload());
 app.use(cookieParser());
 

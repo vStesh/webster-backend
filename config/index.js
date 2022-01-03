@@ -23,5 +23,5 @@ module.exports = {
         PASSWORD: process.env.EMAIL_PASSWORD
     },
     LIVE_TIME_TOKEN: 5 * 60000,
-    STORAGE_FILES: 'static'
+    STORAGE_FILES: '../img'
 }
