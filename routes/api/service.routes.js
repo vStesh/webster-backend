@@ -6,15 +6,15 @@ const middlewareUpdateAndDelete = require('../../middlewares/service-update-dele
 const router = Router();
 
 // /api/organize/createdOrganization
-router.post('/create', serviceMiddleware, createService);
+router.post('/', serviceMiddleware, createService);
 // /api/organize/getOneOrganization
-router.get('/getOne/:id', getService);
+router.get('/:id', getService);
 // /api/organize/getAllOrganization
-router.get('/getAll', getAllService);
+router.get('/', getAllService);
 // /api/organize/updateOrganization
-router.put('/update/:id', middlewareUpdateAndDelete, updateService);
+router.put('/:id', middlewareUpdateAndDelete, updateService);
 // /api/organize/deleteOrganization
-router.delete('/delete/:id', middlewareUpdateAndDelete, deleteService);
+router.delete('/:id', middlewareUpdateAndDelete, deleteService);
 
 
 module.exports = router;

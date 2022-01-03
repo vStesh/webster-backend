@@ -20,7 +20,7 @@ exports.register = async (req, res) => {
         const { email, password, confirm, name } = req.body
         const candidate = await User.findOne({ email })
             if(candidate) {
-                return res.status(400).json(getRes(20,{message: "Such a user already exists"}));
+                return res.status(400).json(getRes(20, { message: "Such a user already exists" }));
             } else {
                 if (password !== confirm) {
                     return res.status(400).json(getRes(21, { message: 'Password does not coincide with confirm' }))
@@ -158,6 +158,9 @@ exports.refresh = async (req, res) => {
 exports.getUsers = async (req, res) => {
     try {
         const users = await User.find()
+        if (!users) {
+            return res.status(404).json(getRes(4, { message: 'Users not found' }))
+        }
         return res.status(200).json(getRes(0,{data: users}))
     } catch (err) {
         return res.status(400).json(getRes(100,{error: err.message}))

@@ -1,13 +1,17 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const authMiddleware = require('../middlewares/auth-middleware');
-const {getRes} = require("../service/getResponse");
+const { getRes } = require('../service/getResponse');
 
 const router = Router();
 
 router.use('/auth', require('./api/auth.routes'));
 router.use('/user', authMiddleware, require('./api/user.routes'));
 router.use('/service', authMiddleware, require('./api/service.routes'));
-router.use('/orders', authMiddleware, require('./api/orders.routes'));
+router.use('/order', authMiddleware, require('./api/order.routes'));
+router.use('/paper', authMiddleware, require('./api/paper.routes'));
+router.use('/price', authMiddleware, require('./api/price.routes'));
+router.use('/type', authMiddleware, require('./api/type.routes'));
+router.use('/size', authMiddleware, require('./api/size.routes'));
 router.get('/', (req, res) => {
     res.send('home api');
 });

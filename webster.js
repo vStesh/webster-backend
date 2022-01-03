@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 require('dotenv').config();
 const mongoose = require('mongoose');
 
@@ -15,11 +16,13 @@ app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Origin', "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Conte nt-Type');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
 
 app.use(express.json({ extended: true }));
+app.use(express.static('static'));
+app.use(fileUpload());
 app.use(cookieParser());
 
 // app.use('/api', cors, require('./routes/api.routes'));
