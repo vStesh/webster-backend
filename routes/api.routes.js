@@ -8,6 +8,7 @@ router.use('/auth', require('./api/auth.routes'));
 router.use('/user', authMiddleware, require('./api/user.routes'));
 router.use('/service', authMiddleware, require('./api/service.routes'));
 router.use('/order', authMiddleware, require('./api/order.routes'));
+router.use('/order_photo', authMiddleware, require('./api/order_photo.routes'));
 router.use('/paper', authMiddleware, require('./api/paper.routes'));
 router.use('/price', authMiddleware, require('./api/price.routes'));
 router.use('/type', authMiddleware, require('./api/type.routes'));

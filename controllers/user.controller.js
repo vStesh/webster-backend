@@ -11,7 +11,7 @@ exports.createProfile = async (req, res) => {
         const { refreshToken } = req.cookies
         const userData = tokenService.validateRefreshToken(refreshToken)
         const user = await User.findById({ _id: userData.id })
-        const fileSave = fileService.saveFile(photo)
+        const fileSave = fileService.saveAvatar(photo)
         user.photo = fileSave
         await user.save()
         return res.status(201).json(getRes(0, { data: user }))

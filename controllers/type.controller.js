@@ -7,7 +7,6 @@ exports.createType = async (req, res) => {
         const type = new Type({ name: name })
         await type.save()
         return res.status(200).json(getRes(0, { message: 'The type has been successfully created', data: type }))
-
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))
     }
@@ -17,6 +16,9 @@ exports.getType = async (req, res) => {
     try {
         const idType = req.params
         const type = await Type.findById(idType)
+        if (!type) {
+            return res.status(404).json(getRes(404, { message: 'Type not found' }))
+        }
         return res.status(200).json(getRes(0, { data: type }))
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))

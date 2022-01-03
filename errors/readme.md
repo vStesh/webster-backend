@@ -32,6 +32,8 @@
 
 ### 34. Order not found.
 
+### 35. Order-Photo not found.
+
 ## Data base errors
 
 ### 50. No database connection.
