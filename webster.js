@@ -29,7 +29,7 @@ app.use(express.json({ extended: true }));
 // app.use('/img', express.static(imageDir));
 app.use(fileUpload());
 app.use(cookieParser());
-app.use(cors);
+app.use(cors());
 
 // app.use('/api', cors, require('./routes/api.routes'));
 app.use('/api', require('./routes/api.routes'));
