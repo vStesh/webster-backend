@@ -1,17 +1,16 @@
 const { Router } = require('express');
-const { createProfile, getAll, updatedData, deletedData } = require('../../controllers/user.controller');
+const { getAll, updatedData, deletedData } = require('../../controllers/user.controller');
 const userMiddleware = require('../../middlewares/user-middleware');
 
 const router = Router();
 
 
-///api/user/
-router.post('/', userMiddleware, createProfile)
-// /api/user/
+
+// /api/user/getAll
 router.get('/', getAll);
-// /api/user/:id
+// /api/user/:id/updatedData
 router.put('/:id', userMiddleware, updatedData)
-// /api/delete/:id
+// /api/delete/:id/deletedData
 router.delete('/:id', userMiddleware, deletedData)
 
 

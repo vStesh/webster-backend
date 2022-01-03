@@ -30,6 +30,18 @@ exports.getPaper = async (req, res) => {
     }
 }
 
+exports.getAll = async (req, res) => {
+    try {
+        const papers = await Paper.find()
+        if (!papers) {
+            return res.status(404).json(getRes(404, { message: 'Papers not found'}))
+        }
+        return res.status(200).json(getRes(0, { data: papers }))
+    } catch (err) {
+        return res.status(400).json(getRes(100, { error: err.message }))
+    }
+}
+
 exports.updatePaper = async (req, res) => {
     try {
         const idPaper = req.params

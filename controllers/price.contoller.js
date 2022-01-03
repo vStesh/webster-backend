@@ -52,6 +52,18 @@ exports.getPrice = async (req, res) => {
     }
 }
 
+exports.getAllPrices = async (req, res) => {
+    try {
+        const prices = await Price.find()
+        if (!prices) {
+            return res.status(404).json(getRes(404, { message: 'Prices not found' }))
+        }
+        return res.status(200).json(getRes(0, { data: prices }))
+    } catch (err) {
+        return res.status(400).json(getRes(100, { error: err.message }))
+    }
+}
+
 exports.updatePrice = async (req, res) => {
     try {
         const idPrice = req.params

@@ -22,7 +22,7 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-console.log(path.resolve(config.STORAGE_FILES, 'photos'));
+// console.log(path.resolve(config.STORAGE_FILES, 'photos'));
 
 app.use(express.json({ extended: true }));
 // app.use('/img', express.static(imageDir));

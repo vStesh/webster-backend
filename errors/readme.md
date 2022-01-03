@@ -10,6 +10,7 @@
 
 ### 3. Authorization error, check your username and password.
 
+### 4. Users not found.
 
 
 ### 10. Validation form errors.
@@ -28,7 +29,7 @@
 
 ### 32. Token expired!
 
-### 33. You aren't the owner this service
+### 33. You are not the owner this service
 
 ### 34. Service not found
 

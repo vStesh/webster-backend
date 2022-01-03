@@ -25,6 +25,19 @@ exports.getOrder = async (req, res) => {
         return res.status(400).json(getRes(100, {error: err.message}))
     }
 }
+
+exports.getOrders = async (req, res) => {
+    try {
+        const orders = await Order.find()
+        if (!orders) {
+            return res.status(404).json(getRes(404, { message: 'Orders not found'}))
+        }
+        return res.status(200).json(getRes(0, { data: orders }))
+    } catch (err) {
+        return res.status(400).json(getRes(100, { error: err.message }))
+    }
+}
+
 exports.updateOrder = async (req, res) => {
     try {
         const idOrder = req.params
