@@ -1,17 +1,19 @@
 const { Router } = require('express');
-const { createOrder, getOrder, updateOrder, deleteOrder } = require('../../controllers/order.controller');
+const { createOrder, getOrder, getOrders, updateOrder, deleteOrder } = require('../../controllers/order.controller');
 const ordersMiddleware = require('../../middlewares/orders-middleware');
 
 
 const router = Router();
 
-// /api/orders/createOrder
+// /api/order/createOrder
 router.post('/', createOrder);
-// /api/orders/getOrder
+// /api/order/getOrder
 router.get('/:id', getOrder);
-// /api/orders/updateOrder
+// /api/order/getOrders
+router.get('/', getOrders);
+// /api/order/updateOrder
 router.put('/:id', ordersMiddleware, updateOrder);
-// /api/orders/deleteOrder
+// /api/order/deleteOrder
 router.delete('/:id', ordersMiddleware, deleteOrder);
 
 

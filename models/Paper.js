@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const PaperSchema = new Schema({
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     size: { type: Schema.Types.ObjectId, ref: 'Size', required: true },
     typePaper: { type: String, required: true },
     density: {type: String, required: true},

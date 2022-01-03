@@ -1,11 +1,17 @@
 const { Router } = require('express');
-const {createPhoto, getPhoto, updatePhoto, deletePhoto} = require('../../controllers/photo.controller')
+const {createPhoto, getPhoto, getAllPhotos, updatePhoto, deletePhoto} = require('../../controllers/photo.controller')
 
 const router = Router();
 
-router.post('/', createPhoto)
-router.get('/:id', getPhoto)
-router.put('/:id', updatePhoto)
-router.delete('/:id', deletePhoto) 
+// /api/photo/createPhoto
+router.post('/', createPhoto);
+// /api/photo/getPhoto
+router.get('/:id', getPhoto);
+// /api/photo/getAllPhotos
+router.get('/', getAllPhotos);
+// /api/photo/updatePhoto
+router.put('/:id', updatePhoto);
+// /api/photo/deletePhoto
+router.delete('/:id', deletePhoto);
 
 module.exports = router

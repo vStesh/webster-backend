@@ -5,22 +5,6 @@ const fileService = require('../service/file-service');
 const { getRes } = require('../service/getResponse');
 
 
-exports.createProfile = async (req, res) => {
-    try {
-        const { photo } = req.files
-        const { refreshToken } = req.cookies
-        const userData = tokenService.validateRefreshToken(refreshToken)
-        const user = await User.findById({ _id: userData.id })
-        const fileSave = fileService.saveAvatar(photo)
-        user.photo = fileSave
-        await user.save()
-        return res.status(201).json(getRes(0, { data: user }))
-    } catch (err) {
-        return res.status(401).json(getRes(100, { error: err.message }))
-    }
-}
-
-
 exports.getAll = async (req, res) => {
     try {
         const users = await User.find()
@@ -36,6 +20,8 @@ exports.getAll = async (req, res) => {
 exports.updatedData = async (req, res) => {
     try {
         const idUser = req.params.id;
+        const { photo } = req.files
+        const fileSave = fileService.saveAvatar(photo)
         const user = await User.findById(idUser);
         if (!user) {
             return res.status(404).json(getRes(2, { message: 'User not found' }));
@@ -46,7 +32,7 @@ exports.updatedData = async (req, res) => {
             return res.status(404).json(getRes(23, { message: 'This new password coincides with the old' }));
         } else {
             const hashPassword = await bcrypt.hash(dataForUpdate.password, 13)
-            const data = await User.findByIdAndUpdate({ _id: user._id }, { password: hashPassword, name: dataForUpdate.name }, { new: true })
+            const data = await User.findByIdAndUpdate({ _id: user._id }, { password: hashPassword, name: dataForUpdate.name, photo: fileSave }, { new: true })
             return res.status(201).json(getRes(0, { message: 'User successfully changed data', data: data }))
         }
     } catch (err) {

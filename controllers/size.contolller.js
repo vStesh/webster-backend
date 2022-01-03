@@ -25,6 +25,18 @@ exports.getSize = async (req, res) => {
     }
 }
 
+exports.getAllSizes = async (req, res) => {
+    try {
+        const sizes = await Size.find()
+        if (!sizes) {
+            return res.status(404).json(getRes(404, { message: 'Sizes not found' }))
+        }
+        return res.status(200).json(getRes(0, { data: sizes }))
+    } catch (err) {
+        return res.status(400).json(getRes(100, { error: err.message }))
+    }
+}
+
 exports.updateSize = async (req, res) => {
     try {
         const idSize = req.params

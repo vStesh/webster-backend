@@ -25,6 +25,18 @@ exports.getType = async (req, res) => {
     }
 }
 
+exports.getAllTypes = async (req, res) => {
+    try {
+        const types = await Type.find()
+        if (!types) {
+            return res.status(404).json(getRes(404, { message: 'Types not found'}))
+        }
+        return res.status(200).json(getRes(0, { data: types }))
+    } catch (err) {
+        return res.status(400).json(getRes(100, { error: err.message }))
+    }
+}
+
 exports.updateType = async (req, res) => {
     try {
         const idType = req.params
