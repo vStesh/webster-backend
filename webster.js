@@ -8,12 +8,11 @@ const {SERVER, DB} = require('./config');
 const app = express();
 const wwwDir = '../www';
 const clientDir = '../client/build';
-// const cors = require('../../middlewares/cors');
 
 app.all('*', function(req, res, next) {
-    let origin = req.get('origin');
+    // let origin = req.get('origin');
     console.log(req);
-    res.header('Access-Control-Allow-Origin', origin);
+    // res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Origin', "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.header('Access-Control-Allow-Headers', 'Conte nt-Type');
