@@ -4,9 +4,9 @@ const { getRes } = require('../service/getResponse');
 const config = require('../config');
 
 class FileService {
-  saveAvatar(file) {
+  saveAvatar(file, id) {
     try {
-      const fileName = uuidv4() + '.png';
+      const fileName = id + '.png';
       const filePath = path.resolve(config.STORAGE_FILES, 'avatar', fileName);
       file.mv(filePath)
       return this.getPath() + 'avatar/' + fileName
