@@ -12,6 +12,7 @@ module.exports = function (req, res, next) {
         if (!accessToken) {
             return res.status(403).json(getRes(1, { message: 'Error authorization' }));
         }
+        // Аксесс токен просрочен
         const userData = tokenService.validateAccessToken(accessToken);
         if (!userData) {
             return res.status(403).json(getRes(1, { message: 'Error validation' }))
