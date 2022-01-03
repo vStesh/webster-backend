@@ -11,7 +11,7 @@ exports.createProfile = async (req, res) => {
         const { refreshToken } = req.cookies
         const userData = tokenService.validateRefreshToken(refreshToken)
         const user = await User.findById({ _id: userData.id })
-        const fileSave = fileService.saveFile(photo)
+        const fileSave = fileService.saveAvatar(photo)
         user.photo = fileSave
         await user.save()
         return res.status(201).json(getRes(0, { data: user }))
@@ -46,7 +46,7 @@ exports.updatedData = async (req, res) => {
             return res.status(404).json(getRes(23, { message: 'This new password coincides with the old' }));
         } else {
             const hashPassword = await bcrypt.hash(dataForUpdate.password, 13)
-            const data = await User.findByIdAndUpdate({_id: user._id}, { password: hashPassword, name: dataForUpdate.name }, {new: true})
+            const data = await User.findByIdAndUpdate({ _id: user._id }, { password: hashPassword, name: dataForUpdate.name }, { new: true })
             return res.status(201).json(getRes(0, { message: 'User successfully changed data', data: data }))
         }
     } catch (err) {

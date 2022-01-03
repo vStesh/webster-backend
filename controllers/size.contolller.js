@@ -16,7 +16,10 @@ exports.getSize = async (req, res) => {
     try {
         const idSize = req.params
         const size = await Size.findById(idSize)
-        return res.status(200).json(getRes(0, { data: size}))
+        if (!size) {
+            return res.status(404).json(getRes(404, { message: 'Size not found' }))
+        }
+        return res.status(200).json(getRes(0, { data: size }))
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))
     }

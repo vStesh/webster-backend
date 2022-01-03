@@ -22,5 +22,6 @@ module.exports = {
         EMAIL: process.env.EMAIL_LOGIN,
         PASSWORD: process.env.EMAIL_PASSWORD
     },
-    LIVE_TIME_TOKEN: 5 * 60000
+    LIVE_TIME_TOKEN: 5 * 60000,
+    STORAGE_FILES: static
 }
