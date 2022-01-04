@@ -10,6 +10,7 @@ router.use('/service', authMiddleware, require('./api/service.routes'));
 router.use('/order', authMiddleware, require('./api/order.routes'));
 router.use('/order_photo', authMiddleware, require('./api/order_photo.routes'));
 router.use('/paper', authMiddleware, require('./api/paper.routes'));
+router.use('/photo', authMiddleware, require('./api/photo.routes'));
 router.use('/price', authMiddleware, require('./api/price.routes'));
 router.use('/type', authMiddleware, require('./api/type.routes'));
 router.use('/size', authMiddleware, require('./api/size.routes'));
