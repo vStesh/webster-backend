@@ -5,7 +5,7 @@ module.exports = {
     '3'     : 'Authorization error, check your username and password.',
     '4'     : 'Users not found.',
     '10'    : 'Validation form errors.',
-    '20'    : 'User already exists.',
+    '20'    : 'User with email already exists.',
     '21'    : 'Password does not coincide with confirm.',
     '22'    : 'The password is the same as the old one.',
     '23'    : 'Update user error.',

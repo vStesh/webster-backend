@@ -15,7 +15,7 @@
 
 ### 10. Validation form errors.
 
-### 20. User already exists.
+### 20. User with email already exists.
 
 ### 21. Password does not coincide with confirm.
 
