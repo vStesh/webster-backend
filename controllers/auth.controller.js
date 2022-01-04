@@ -61,7 +61,7 @@ exports.login = async (req, res) => {
             return res.status(200).json(getRes(0, {data: { ...tokens, user: userDto }}))
         }
     } catch (err) {
-        return res.status(400).json(getRes(100, {error: err.message}))
+        return res.status(400).json(getRes(100, { error: err.message }))
     }
 }
 
@@ -73,7 +73,7 @@ exports.reset = async (req, res) => {;
             const userDto = new UserDto(user)
             const token = tokenService.generateTokenResetPassword({ ...userDto })
             if (!token) {
-                return res.status(400).json(getRes(30, {message: 'Token not generated'}))
+                return res.status(400).json(getRes(30, { message: 'Token not generated' }))
             } else {
                 user.resetToken = token
                 user.resetTokenExp = Date.now() + LIVE_TIME_TOKEN
@@ -163,14 +163,14 @@ exports.getUsers = async (req, res) => {
         }
         return res.status(200).json(getRes(0,{data: users}))
     } catch (err) {
-        return res.status(400).json(getRes(100,{error: err.message}))
+        return res.status(400).json(getRes(100, { error: err.message }))
     }
 }
 
 exports.getUser = async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
-        return res.status(200).json(getRes(0, { data: { email: user.email, id: user.id } }));
+        return res.status(200).json(getRes(0, { data: { email: user.email, id: user.id, name: user.name }}));
     } catch (err) {
         return res.status(400).json(getRes(100,{error: err.message}))
     }
