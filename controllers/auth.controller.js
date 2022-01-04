@@ -20,7 +20,7 @@ exports.register = async (req, res) => {
         const { email, password, confirm, name } = req.body
         const candidate = await User.findOne({ email })
             if(candidate) {
-                return res.status(400).json(getRes(20, { message: "Such a user already exists" }));
+                return res.status(404).json(getRes(20, { message: 'Such a user already exists' }));
             } else {
                 if (password !== confirm) {
                     return res.status(400).json(getRes(21, { message: 'Password does not coincide with confirm' }))
@@ -35,11 +35,11 @@ exports.register = async (req, res) => {
                     }
                     await tokenService.saveToken(userDto.id, tokens.refreshToken)
                     res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
-                    return res.json(getRes(0, {data: { ...tokens, user: userDto }, message: "The user has been successfully registered"}))
+                    return res.status(201).json(getRes(0, {data: { ...tokens, user: userDto }, message: 'The user has been successfully registered'}))
                 }
             }
     } catch (err) {
-       return res.status(500).json(getRes(500, {message: 'Ошибка. Сервер не может обработать ваш запрос.'}));
+       return res.status(500).json(getRes(500, {message: 'Error. The server cannot process your request.'}));
     }
 }
 
@@ -48,7 +48,7 @@ exports.login = async (req, res) => {
         const { email, password } = req.body
         const candidate = await User.findOne({ email })
         if (!candidate) {
-            return res.status(400).json(getRes(2,{ message: 'User not found, please register' }))
+            return res.status(400).json(getRes(2, { message: 'User not found, please register' }))
         }
         const checkPassword = await bcrypt.compare(password, candidate.password)
         if (!checkPassword) {
@@ -58,7 +58,7 @@ exports.login = async (req, res) => {
             const tokens = tokenService.generateTokens({ ...userDto })
             await tokenService.saveToken(userDto.id, tokens.refreshToken)
             res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
-            return res.json(getRes(0, {data: { ...tokens, user: userDto }}))
+            return res.status(200).json(getRes(0, {data: { ...tokens, user: userDto }}))
         }
     } catch (err) {
         return res.status(400).json(getRes(100, {error: err.message}))
@@ -78,7 +78,7 @@ exports.reset = async (req, res) => {;
                 user.resetToken = token
                 user.resetTokenExp = Date.now() + LIVE_TIME_TOKEN
                 await user.save()
-                res.status(200).json(getRes(0, {message: 'Message was sent successfully'}))
+                res.status(200).json(getRes(0, { message: 'Message was sent successfully' }))
                 return mailer(userDto.email, token)
             }
          } else {
@@ -124,10 +124,10 @@ exports.logout = async (req, res) => {
         const { refreshToken } = req.cookies
         const token = await tokenService.removeToken(refreshToken)
         if (!token) {
-            return res.status(400).json(getRes(30, {message: 'Token not generated'}))
+            return res.status(400).json(getRes(30, { message: 'Token not generated' }))
         }
         res.clearCookie('refreshToken')
-        return res.json(getRes(0, {data: token }))
+        return res.status(200).json(getRes(0, { data: token }))
     } catch (err) {
         return res.status(400).json(getRes(100, {error: err.message}))
     }
@@ -149,7 +149,7 @@ exports.refresh = async (req, res) => {
         const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
         res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
-        return res.status(200).json(getRes(0,{data: {...tokens, user: userDto}}))
+        return res.status(200).json(getRes(0, { data: { ...tokens, user: userDto } }))
     } catch (err) {
         return res.status(400).json(getRes(100, {error: err.message}))
     }
@@ -170,7 +170,7 @@ exports.getUsers = async (req, res) => {
 exports.getUser = async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
-        return res.status(200).json(getRes(0,{data: {user: user}}));
+        return res.status(200).json(getRes(0, { data: { email: user.email, id: user.id } }));
     } catch (err) {
         return res.status(400).json(getRes(100,{error: err.message}))
     }
