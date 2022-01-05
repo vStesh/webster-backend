@@ -67,8 +67,30 @@ exports.getAllPrices = async (req, res) => {
 exports.updatePrice = async (req, res) => {
     try {
         const idPrice = req.params
-        const updateData = req.body
-        const price = await Price.findByIdAndUpdate(idPrice.id, updateData, { new: true })
+        const { service, paper, size, type, price } = req.body
+        const findService = await Service.findOne({ name: service })
+        if (!service) {
+            return res.status(200).json(getRes(34, { message: 'Service not found' }))
+        }
+        const findPaper = await Paper.findOne({ name: paper })
+        if (!paper) {
+            return res.status(200).json(getRes(38, { message: 'Paper not found' }))
+        }
+        const findSize = await Size.findOne({ name: size })
+        if (!size) {
+            return res.status(200).json(getRes(40, { message: 'Size not found' }))
+        }
+        const findType = await Type.findOne({ name: type })
+        if (!type) {
+            return res.status(200).json(getRes(39, { message: 'Type not found' }))
+        }
+        const price = await Price.findByIdAndUpdate(idPrice.id, {
+            service: findService,
+            paper: findPaper,
+            size: findSize,
+            type: findType,
+            price
+        }, { new: true })
         return res.status(200).json(getRes(0, {message: 'The price has been successfully updated', data: price}))
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))
