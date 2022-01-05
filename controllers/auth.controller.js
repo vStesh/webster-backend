@@ -23,7 +23,7 @@ exports.register = async (req, res) => {
                 return res.status(200).json(getRes(20, { message: 'Such a user already exists' }));
             } else {
                 if (password !== confirm) {
-                    return res.status(400).json(getRes(21, { message: 'Password does not coincide with confirm' }))
+                    return res.status(200).json(getRes(21, { message: 'Password does not coincide with confirm' }))
                 } else {
                     const hashPassword = await bcrypt.hash(password, 13)
                     const user = new User({ email, password: hashPassword, name });

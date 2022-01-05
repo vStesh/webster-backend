@@ -10,12 +10,12 @@ module.exports = function (req, res, next) {
         }
         const accessToken = authorizationHeader.split(' ')[1];
         if (!accessToken) {
-            return res.status(401).json(getRes(1, { message: 'Error authorization' }));
+            return res.status(401).json(getRes(31, { message: 'Error authorization' }));
         }
         // Аксесс токен просрочен
         const userData = tokenService.validateAccessToken(accessToken);
         if (!userData) {
-            return res.status(401).json(getRes(1, { message: 'Error validation' }))
+            return res.status(401).json(getRes(32, { message: 'Token expired!' }))
         }
         req.user = userData;
         next();
