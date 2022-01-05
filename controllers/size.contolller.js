@@ -17,7 +17,7 @@ exports.getSize = async (req, res) => {
         const idSize = req.params
         const size = await Size.findById(idSize)
         if (!size) {
-            return res.status(404).json(getRes(404, { message: 'Size not found' }))
+            return res.status(200).json(getRes(40, { message: 'Size not found' }))
         }
         return res.status(200).json(getRes(0, { data: size }))
     } catch (err) {
@@ -29,7 +29,7 @@ exports.getAllSizes = async (req, res) => {
     try {
         const sizes = await Size.find()
         if (!sizes) {
-            return res.status(404).json(getRes(404, { message: 'Sizes not found' }))
+            return res.status(200).json(getRes(404, { message: 'Sizes not found' }))
         }
         return res.status(200).json(getRes(0, { data: sizes }))
     } catch (err) {
@@ -53,7 +53,7 @@ exports.deleteSize = async (req, res) => {
         const idSize = req.params
         const size = await Size.findById(idSize);
         if (!size) {
-            return res.status(404).json(getRes(404, { message: 'Size not found' }))
+            return res.status(200).json(getRes(40, { message: 'Size not found' }))
         }
         size.deletedAt = Date.now()
         await size.save()

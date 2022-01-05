@@ -8,7 +8,7 @@ exports.createPhoto = async (req, res) => {
         const { refreshToken } = req.cookies
         const tokenData = tokenService.validateRefreshToken(refreshToken)
         if (!tokenData) {
-            return res.status(400).json(getRes(31, { message: 'Invalid refresh token' }))
+            return res.status(200).json(getRes(31, { message: 'Invalid refresh token' }))
         }
         const photo = new Photo({ user: tokenData.id, url, settings, comment })
         await photo.save()
@@ -23,7 +23,7 @@ exports.getPhoto = async (req, res) => {
         const idPhoto = req.params
         const photo = await Photo.findById(idPhoto)
         if (!photo) {
-            return res.status(404).json(getRes(37, { message: 'Photo not found' }))
+            return res.status(200).json(getRes(37, { message: 'Photo not found' }))
         }
         return res.status(200).json(getRes(0, { data: photo}))
     } catch (err) {
@@ -35,7 +35,7 @@ exports.getAllPhotos = async (req, res) => {
     try {
         const photos = await Photo.find()
         if (!photos) {
-            return res.status(404).json(getRes(404, { message: 'Photos not found' }))
+            return res.status(200).json(getRes(404, { message: 'Photos not found' }))
         }
         return res.status(200).json(getRes(0, { data: photos }))
     } catch (err) {
@@ -59,7 +59,7 @@ exports.deletePhoto = async (req, res) => {
         const idPhoto = req.params
         const photo = await Photo.findById(idPhoto)
         if (!photo) {
-            return res.status(404).json(getRes(37, { message: 'Photo not found' }))
+            return res.status(200).json(getRes(37, { message: 'Photo not found' }))
         }
         photo.deletedAt = Date.now()
         await photo.save()

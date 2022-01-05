@@ -18,7 +18,7 @@ exports.getService = async (req, res) => {
         const idService = req.params
         const service = await Service.findById(idService.id)
         if (!service) {
-            return res.status(404).json(getRes(32, { message: 'Service not found' }))
+            return res.status(200).json(getRes(34, { message: 'Service not found' }))
         }
         return res.status(200).json(getRes(0, {data: service}))
     } catch (err) {
@@ -30,7 +30,7 @@ exports.getAllService = async (req, res) => {
     try {
         const allService = await Service.find();
         if (!allService) {
-            return res.status(404).json(getRes(32, { message: 'Services not found' }))
+            return res.status(200).json(getRes(34, { message: 'Services not found' }))
         }
         return res.status(200).json(getRes(0, {data: allService}))
     } catch (err) {
@@ -54,7 +54,7 @@ exports.deleteService = async (req, res) => {
         const idService = req.params
         const service = await Service.findById({ _id: idService.id })
         if (!service) {
-            return res.status(404).json(getRes(32, { message: 'Service not found' }))
+            return res.status(200).json(getRes(34, { message: 'Service not found' }))
         }
         service.deletedAt = Date.now()
         service.active = false
