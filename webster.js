@@ -31,15 +31,15 @@ app.use(express.json({ extended: true }));
 app.use(fileUpload());
 app.use(cookieParser());
 let corsOptions;
-app.all('*', function(req, res, next) {
-    let origin = req.get('origin');
-    corsOptions = {
-        credentials: true,
-        origin: origin
-    }
-    console.log(origin);
-    next();
-});
+// app.all('*', function(req, res, next) {
+//     let origin = req.get('origin');
+//     corsOptions = {
+//         credentials: true,
+//         origin: origin
+//     }
+//     console.log(origin);
+//     next();
+// });
 
 
 app.use(cors(corsOptions));
