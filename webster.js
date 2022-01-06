@@ -31,8 +31,8 @@ app.use(fileUpload());
 app.use(cookieParser());
 
 let corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    credentials: true,
+    origin: '*'
 }
 
 app.use(cors(corsOptions));
