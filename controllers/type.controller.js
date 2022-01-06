@@ -17,7 +17,7 @@ exports.getType = async (req, res) => {
         const idType = req.params
         const type = await Type.findById(idType)
         if (!type) {
-            return res.status(404).json(getRes(404, { message: 'Type not found' }))
+            return res.status(200).json(getRes(39, { message: 'Type not found' }))
         }
         return res.status(200).json(getRes(0, { data: type }))
     } catch (err) {
@@ -53,7 +53,7 @@ exports.deleteType = async (req, res) => {
         const idType = req.params
         const type = await Type.findById(idType)
         if (!type) {
-            return res.status(404).json(getRes(404, { message: 'Type not found' }))
+            return res.status(200).json(getRes(39, { message: 'Type not found' }))
         }
         type.deletedAt = Date.now()
         await type.save()

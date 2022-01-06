@@ -95,7 +95,7 @@ exports.change = async (req, res) => {
         const resetT = req.body.resetToken
         if (resetToken) {
             const token = tokenService.validateTokenReset(resetToken)
-            const user = await User.findOne({ email: token.email, resetToken: resetT, resetTokenExp: { $gt: Date.now() } })
+            const user = await User.findOne({ email: token.email, resetToken: resetT, resetTokenExp: { $gt: Date.now() }})
             if (!user) {
                 return res.status(200).json(getRes(1, { message: 'Token expired' }))
             } else {
