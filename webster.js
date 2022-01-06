@@ -36,6 +36,7 @@ app.all('*', function(req, res, next) {
         credentials: true,
         origin: origin
     }
+    console.log(origin);
     next();
 });
 
