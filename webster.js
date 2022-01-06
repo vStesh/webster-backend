@@ -13,15 +13,15 @@ const app = express();
 const clientDir = '../client/build';
 const imageDir = '../img';
 
-// app.all('*', function(req, res, next) {
-//     let origin = req.get('origin');
-//     console.log(origin);
-//     res.header('Access-Control-Allow-Origin', origin);
-//     res.header('Access-Control-Allow-Origin', "*");
-//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//     res.header('Access-Control-Allow-Headers', 'Content-Type');
-//     next();
-// });
+app.all('*', function(req, res, next) {
+    let origin = req.get('origin');
+    console.log(origin);
+    res.header('Access-Control-Allow-Origin', origin);
+    // res.header('Access-Control-Allow-Origin', "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
 // console.log(path.resolve(config.STORAGE_FILES, 'photos'));
 
