@@ -16,6 +16,7 @@ const imageDir = '../img';
 app.all('*', function(req, res, next) {
     let origin = req.get('origin');
     console.log(origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Origin', origin);
     // res.header('Access-Control-Allow-Origin', "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
