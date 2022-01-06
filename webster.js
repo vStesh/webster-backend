@@ -29,7 +29,13 @@ app.use(express.json({ extended: true }));
 // app.use('/img', express.static(imageDir));
 app.use(fileUpload());
 app.use(cookieParser());
-app.use(cors());
+
+let corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions));
 
 // app.use('/api', cors, require('./routes/api.routes'));
 app.use('/api', require('./routes/api.routes'));
