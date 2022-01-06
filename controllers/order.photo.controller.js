@@ -56,7 +56,11 @@ exports.getOrderPhoto = async (req, res) => {
         const idOrderPhoto = req.params
         const order_photo = await OrderPhoto.findById(idOrderPhoto);
         if (!order_photo) {
+<<<<<<< HEAD
             return res.status(200).json(getRes(36, { message: 'Order-Photo not found' }))
+=======
+            return res.status(200).json(getRes(36, { message: 'Order-Photo not found' }))   
+>>>>>>> 599276fb2c3f57e759c422134389fe644457a5b8
         }
         return res.status(200).json(getRes(0, { data: order_photo }))
     } catch (err) {
@@ -124,7 +128,11 @@ exports.deleteOrderPhoto = async (req, res) => {
         const idOrderPhoto = req.params
         const order_photo = await OrderPhoto.findById(idOrderPhoto);
         if (!order_photo) {
+<<<<<<< HEAD
             return res.status(200).json(getRes(36, { message: 'Order-Photo not found' }))
+=======
+            return res.status(200).json(getRes(36, { message: 'Order-Photo not found' }))   
+>>>>>>> 599276fb2c3f57e759c422134389fe644457a5b8
         }
         order_photo.deleteAt = Date.now()
         await order_photo.save()
