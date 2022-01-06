@@ -84,22 +84,14 @@ exports.updatePrice = async (req, res) => {
         if (!type) {
             return res.status(200).json(getRes(39, { message: 'Type not found' }))
         }
-<<<<<<< HEAD
         const priceData = await Price.findByIdAndUpdate(idPrice.id, {
-=======
-        const price = await Price.findByIdAndUpdate(idPrice.id, {
->>>>>>> 599276fb2c3f57e759c422134389fe644457a5b8
             service: findService,
             paper: findPaper,
             size: findSize,
             type: findType,
             price
         }, { new: true })
-<<<<<<< HEAD
         return res.status(200).json(getRes(0, {message: 'The price has been successfully updated', data: priceData}))
-=======
-        return res.status(200).json(getRes(0, {message: 'The price has been successfully updated', data: price}))
->>>>>>> 599276fb2c3f57e759c422134389fe644457a5b8
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))
     }
