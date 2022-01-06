@@ -29,11 +29,16 @@ app.use(express.json({ extended: true }));
 // app.use('/img', express.static(imageDir));
 app.use(fileUpload());
 app.use(cookieParser());
+let corsOptions;
+app.all('*', function(req, res, next) {
+    let origin = req.get('origin');
+    corsOptions = {
+        credentials: true,
+        origin: origin
+    }
+    next();
+});
 
-let corsOptions = {
-    credentials: true,
-    origin: '*'
-}
 
 app.use(cors(corsOptions));
 
