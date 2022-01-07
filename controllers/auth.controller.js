@@ -135,7 +135,8 @@ exports.logout = async (req, res) => {
 
 exports.refresh = async (req, res) => {
     try {
-        const { refreshToken } = req.cookies
+        const { refreshToken } = req.cookies;
+        console.log(req.cookies);
         if (!refreshToken) {
             return res.status(200).json(getRes(31, { message: 'Token not found' }));
         }
