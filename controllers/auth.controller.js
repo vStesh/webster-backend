@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
             const userDto = new UserDto(candidate)
             const tokens = tokenService.generateTokens({ ...userDto })
             await tokenService.saveToken(userDto.id, tokens.refreshToken);
-            res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, domain: '.printapp.store', sameSite: 'none'})
+            res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, domain: '.printapp.store'})
             return res.status(200).json(getRes(0, {data: { ...tokens, user: userDto }}))
         }
     } catch (err) {
@@ -149,7 +149,7 @@ exports.refresh = async (req, res) => {
         const userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
-        res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, domain: '.printapp.store', sameSite: 'none'})
+        res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, domain: '.printapp.store'})
         return res.status(200).json(getRes(0, { data: { ...tokens, user: userDto } }))
     } catch (err) {
         return res.status(500).json(getRes(100, {error: err.message}))
