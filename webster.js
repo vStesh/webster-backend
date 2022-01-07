@@ -16,7 +16,7 @@ const imageDir = '../img';
 
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: ['http://localhost:3000', 'http://my.printapp.store/', 'http://img.printapp.store/', 'http://api.printapp.store/', 'http://printapp.store/']
 }));
 
 // app.all('*', function(req, res, next) {
