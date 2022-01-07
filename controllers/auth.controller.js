@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
             const userDto = new UserDto(candidate)
             const tokens = tokenService.generateTokens({ ...userDto })
             await tokenService.saveToken(userDto.id, tokens.refreshToken);
-            res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'none', secure: false, domain: 'my.printapp.store'})
+            res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'none', secure: true})
             return res.status(200).json(getRes(0, {data: { ...tokens, user: userDto }}))
         }
     } catch (err) {
