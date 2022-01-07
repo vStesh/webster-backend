@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
                         return res.status(400).json(getRes(30, { message: 'Tokens not generated' }))
                     }
                     await tokenService.saveToken(userDto.id, tokens.refreshToken)
-                    res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+                    res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'none'})
                     return res.status(201).json(getRes(0, {data: { ...tokens, user: userDto }, message: 'The user has been successfully registered'}))
                 }
             }
@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
             const userDto = new UserDto(candidate)
             const tokens = tokenService.generateTokens({ ...userDto })
             await tokenService.saveToken(userDto.id, tokens.refreshToken)
-            res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'none', secure: true})
+            res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'none'})
             return res.status(200).json(getRes(0, {data: { ...tokens, user: userDto }}))
         }
     } catch (err) {
@@ -149,7 +149,7 @@ exports.refresh = async (req, res) => {
         const userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
-        res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'none', secure: true})
+        res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'none'})
         return res.status(200).json(getRes(0, { data: { ...tokens, user: userDto } }))
     } catch (err) {
         return res.status(500).json(getRes(100, {error: err.message}))
