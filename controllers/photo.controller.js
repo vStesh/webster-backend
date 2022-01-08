@@ -22,6 +22,7 @@ exports.createPhoto = async (req, res) => {
 
 exports.uploadPhoto = async (req, res) => {
     try {
+        console.log('Upload Photo');
         const user = req.user;
         const { file } = req.files;
         console.log(file);
