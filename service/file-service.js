@@ -14,7 +14,7 @@ class FileService {
         return res.status(401).json(getRes(100, { error: err.message }))
     }
   }
-  savePhotos() {
+  savePhotos(file, id) {
     try {
       const fileName = uuidv4() + '.png';
       const filePath = path.resolve(config.STORAGE_FILES, 'photos', fileName);
