@@ -26,12 +26,12 @@ exports.uploadPhoto = async (req, res) => {
         const user = req.user;
         console.log('user');
         console.log(user);
-        const files = req.files;
-        console.log(files);
-        if(!files) {
-            return res.status(200).json(getRes(31, { message: 'File not found' }))
+        const file = req.files.file;
+        console.log(file);
+        if(!file) {
+            return res.status(200).json(getRes(60, { message: 'File not found' }))
         }
-        const fileSave = fileService.savePhotos(files[0], user.id);
+        const fileSave = fileService.savePhotos(file, user.id);
 
         return res.status(201).json(getRes(0, { message: 'Photo uploaded successfully', data: {url: fileSave} }))
 
