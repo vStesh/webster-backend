@@ -1,6 +1,8 @@
 const Photo = require('../models/Photo');
 const tokenService = require('../service/token-service');
 const { getRes } = require('../service/getResponse');
+const fileService = require("../service/file-service");
+const User = require("../models/User");
 
 exports.createPhoto = async (req, res) => {
     try {
@@ -11,12 +13,30 @@ exports.createPhoto = async (req, res) => {
             return res.status(200).json(getRes(31, { message: 'Invalid refresh token' }))
         }
         const photo = new Photo({ user: tokenData.id, url, settings, comment })
-        await photo.save()
+        await photo.save();
         return res.status(200).json(getRes(0, { message: 'The photo has been successfully created' }))
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))
     }
 }
+
+exports.uploadPhoto = async (req, res) => {
+    try {
+        const user = req.user;
+        const { file } = req.files;
+
+        if(!file) {
+            return res.status(200).json(getRes(31, { message: 'File not found' }))
+        }
+        const fileSave = fileService.savePhotos(file, user.id);
+
+        return res.status(201).json(getRes(0, { message: 'Photo uploaded successfully', data: {url: fileSave} }))
+
+    } catch (err) {
+        return res.status(400).json(getRes(100, { error: err.message }))
+    }
+}
+
 
 exports.getPhoto = async (req, res) => {
     try {

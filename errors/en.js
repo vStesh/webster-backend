@@ -22,6 +22,7 @@ module.exports = {
     '40'    : 'Size not found.',
     '41'    : 'Price not found.',
     '50'    : 'No database connection',
+    '60'    : 'Has no files on your request',
     '100'   : 'Unknown error!',
     '404'   : 'Unknown Endpoint or method.',
     '500'   : 'The server cannot process your request.'
