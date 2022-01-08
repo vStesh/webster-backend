@@ -24,7 +24,7 @@ exports.uploadPhoto = async (req, res) => {
     try {
         const user = req.user;
         const { file } = req.files;
-
+        console.log(file);
         if(!file) {
             return res.status(200).json(getRes(31, { message: 'File not found' }))
         }
