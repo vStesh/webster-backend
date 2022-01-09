@@ -49,15 +49,21 @@ exports.updateOrder = async (req, res) => {
     try {
         const idOrder = req.params
         const { comment, service, settings } = req.body
-        const getService = await Service.findOne({ name: service });
-        if (!getService) {
-            return res.status(200).json(getRes(34, { message: 'Service not found, please enter correct name'}))
+        // const getService = await Service.findOne({ name: service });
+        // if (!getService) {
+        //     return res.status(200).json(getRes(34, { message: 'Service not found, please enter correct name'}))
+        // }
+        const update = {};
+        if(comment) {
+            update.comment = comment;
         }
-        const order = await Order.findByIdAndUpdate(idOrder.id, {
-            comment,
-            service: getService,
-            settings
-        }, { new: true })
+        if(service) {
+            update.service = service;
+        }
+        if(settings) {
+            update.settings = settings;
+        }
+        const order = await Order.findByIdAndUpdate(idOrder.id, update, { new: true })
         if (!order) {
             return res.status(200).json(getRes(35, { message: 'Order not found' }))
         }
