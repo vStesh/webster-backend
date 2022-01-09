@@ -35,7 +35,7 @@ exports.getOrder = async (req, res) => {
 exports.getOrders = async (req, res) => {
     try {
         const user = req.user;
-        const orders = await Order.find({user: user.id});
+        const orders = await Order.find({user: user.id}, null, {sort: {createdAt: 'desc'}});
         if (!orders) {
             return res.status(200).json(getRes(404, { message: 'Orders not found'}))
         }
