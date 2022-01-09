@@ -6,15 +6,16 @@ const User = require("../models/User");
 
 exports.createPhoto = async (req, res) => {
     try {
-        const { url, settings, comment } = req.body
-        const { refreshToken } = req.cookies
-        const tokenData = tokenService.validateRefreshToken(refreshToken)
-        if (!tokenData) {
-            return res.status(200).json(getRes(31, { message: 'Invalid refresh token' }))
+        const user = req.user;
+        const file = req.files.file;
+        if(!file) {
+            return res.status(200).json(getRes(60, { message: 'File not found' }))
         }
-        const photo = new Photo({ user: tokenData.id, url, settings, comment })
+        const fileUrl = await fileService.savePhotos(file, user.id);
+
+        const photo = new Photo({ user: user.id, url: fileUrl, settings: {fileName: file.name, size: file.size} });
         await photo.save();
-        return res.status(200).json(getRes(0, { message: 'The photo has been successfully created' }))
+        return res.status(200).json(getRes(0, { message: 'The photo has been successfully uploaded', data: photo }))
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))
     }
