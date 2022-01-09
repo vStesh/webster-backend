@@ -13,8 +13,6 @@ router.get('/', getAllPhotos);
 router.put('/:id', updatePhoto);
 // /api/photo/
 router.delete('/:id', deletePhoto);
-// /api/photo/upload
-router.post('/upload', uploadPhoto);
 
 
 module.exports = router

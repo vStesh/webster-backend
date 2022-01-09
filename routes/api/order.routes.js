@@ -7,7 +7,7 @@ const router = Router();
 
 // /api/order
 router.post('/', createOrder);
-// /api/order/getOrder
+// /api/order
 router.get('/:id', getOrder);
 // /api/order/getOrders
 router.get('/', getOrders);

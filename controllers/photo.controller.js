@@ -21,27 +21,6 @@ exports.createPhoto = async (req, res) => {
     }
 }
 
-exports.uploadPhoto = async (req, res) => {
-    try {
-        console.log('Upload Photo');
-        const user = req.user;
-        console.log('user');
-        console.log(user);
-        const file = req.files.file;
-        console.log(file);
-        if(!file) {
-            return res.status(200).json(getRes(60, { message: 'File not found' }))
-        }
-        const fileSave = fileService.savePhotos(file, user.id);
-
-        return res.status(201).json(getRes(0, { message: 'Photo uploaded successfully', data: {url: fileSave} }))
-
-    } catch (err) {
-        return res.status(400).json(getRes(100, { error: err.message }))
-    }
-}
-
-
 exports.getPhoto = async (req, res) => {
     try {
         const idPhoto = req.params

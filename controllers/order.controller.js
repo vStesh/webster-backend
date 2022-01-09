@@ -5,15 +5,15 @@ const { getRes } = require('../service/getResponse');
 
 exports.createOrder = async (req, res) => {
     try {
-        const { comment, service, settings } = req.body
-        const userData = req.user
-        const user = await User.findById({ _id: userData.id })
-        const findService = await Service.findOne({ name: service })
-        if (!findService) {
-            return res.status(200).json(getRes(34, { message: 'Service not found'}))
-        }
-        const order = new Order({ user: user._id, comment, service: findService, settings })
-        await order.save()
+        // const { comment, service, settings } = req.body
+        const user = req.user
+        // const user = await User.findById({ _id: userData.id })
+        // const findService = await Service.findOne({ name: service })
+        // if (!findService) {
+        //     return res.status(200).json(getRes(34, { message: 'Service not found'}))
+        // }
+        const order = new Order({ user: user.id});
+        await order.save();
         return res.status(200).json(getRes(0, { message: 'The order has been successfully created', data: order }))
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))
