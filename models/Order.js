@@ -13,6 +13,6 @@ const OrderSchema = new Schema({
     deletedAt: { type: Date, default: null }
 })
 
-OrderSchema.plugin(mongooseSerial, { field: 'number', digits: 14 });
+OrderSchema.plugin(mongooseSerial, { field: 'number' });
 
 module.exports = model('Orders', OrderSchema);
