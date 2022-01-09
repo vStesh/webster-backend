@@ -7,6 +7,7 @@ const OrderSchema = new Schema({
     comment: { type: String },
     service: { type: Schema.Types.ObjectId, ref: 'Service', default: null },
     settings: { type: Object },
+    status: { enum: ['нове', 'розміщено', 'в роботі', 'завершено', 'виконано', 'архівне'], default: 0 },
     createdAt: {type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now },
     deletedAt: { type: Date, default: null }
