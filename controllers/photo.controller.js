@@ -36,7 +36,8 @@ exports.getPhoto = async (req, res) => {
 
 exports.getAllPhotos = async (req, res) => {
     try {
-        const photos = await Photo.find()
+        const user = req.user;
+        const photos = await Photo.find({user: user.id});
         if (!photos) {
             return res.status(200).json(getRes(404, { message: 'Photos not found' }))
         }
