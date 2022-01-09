@@ -5,7 +5,7 @@ const ordersMiddleware = require('../../middlewares/orders-middleware');
 
 const router = Router();
 
-// /api/order/createOrder
+// /api/order
 router.post('/', createOrder);
 // /api/order/getOrder
 router.get('/:id', getOrder);
