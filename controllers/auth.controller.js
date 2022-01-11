@@ -171,7 +171,7 @@ exports.getUsers = async (req, res) => {
 exports.getUser = async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
-        return res.status(200).json(getRes(0, { data: { email: user.email, id: user.id, name: user.name, isAdmin: user.isAmin }}));
+        return res.status(200).json(getRes(0, { data: { email: user.email, id: user.id, name: user.name, isAdmin: 'false' }}));
     } catch (err) {
         return res.status(500).json(getRes(100,{error: err.message}))
     }
