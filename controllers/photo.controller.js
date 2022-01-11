@@ -24,7 +24,9 @@ exports.createPhoto = async (req, res) => {
 exports.getPhoto = async (req, res) => {
     try {
         const idPhoto = req.params
-        const photo = await Photo.findById(idPhoto, null, {sort: {createdAt: 'desc'}});
+        const photo = await Photo.findById(idPhoto)
+        if (!photo) {
+            return res.status(200).json(getRes(37, { message: 'Photo not found' }))
         }
         return res.status(200).json(getRes(0, { data: photo}))
     } catch (err) {
@@ -35,7 +37,7 @@ exports.getPhoto = async (req, res) => {
 exports.getAllPhotos = async (req, res) => {
     try {
         const user = req.user;
-        const photos = await Photo.find({user: user.id});
+        const photos = await Photo.find({user: user.id}, null, {sort: {createdAt: 'desc'}});
         if (!photos) {
             return res.status(200).json(getRes(404, { message: 'Photos not found' }))
         }
