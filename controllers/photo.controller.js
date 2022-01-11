@@ -24,9 +24,7 @@ exports.createPhoto = async (req, res) => {
 exports.getPhoto = async (req, res) => {
     try {
         const idPhoto = req.params
-        const photo = await Photo.findById(idPhoto)
-        if (!photo) {
-            return res.status(200).json(getRes(37, { message: 'Photo not found' }))
+        const photo = await Photo.findById(idPhoto, null, {sort: {createdAt: 'desc'}});
         }
         return res.status(200).json(getRes(0, { data: photo}))
     } catch (err) {
