@@ -3,15 +3,16 @@ const {createPhoto, getPhoto, getAllPhotos, updatePhoto, deletePhoto} = require(
 
 const router = Router();
 
-// /api/photo/createPhoto
+// /api/photo/
 router.post('/', createPhoto);
-// /api/photo/getPhoto
+// /api/photo/
 router.get('/:id', getPhoto);
-// /api/photo/getAllPhotos
+// /api/photo/
 router.get('/', getAllPhotos);
-// /api/photo/updatePhoto
+// /api/photo/
 router.put('/:id', updatePhoto);
-// /api/photo/deletePhoto
+// /api/photo/
 router.delete('/:id', deletePhoto);
+
 
 module.exports = router

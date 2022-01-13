@@ -41,6 +41,10 @@
 
 ### 50. No database connection.
 
+### Photos upload
+
+### 60. Has no files on your request
+
 ## Other
 
 ### 100. Unknown error.

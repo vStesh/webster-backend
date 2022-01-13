@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
                         return res.status(400).json(getRes(30, { message: 'Tokens not generated' }))
                     }
                     await tokenService.saveToken(userDto.id, tokens.refreshToken)
-                    res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+                    res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, domain: '.printapp.store'})
                     return res.status(201).json(getRes(0, {data: { ...tokens, user: userDto }, message: 'The user has been successfully registered'}))
                 }
             }
@@ -135,7 +135,7 @@ exports.logout = async (req, res) => {
 
 exports.refresh = async (req, res) => {
     try {
-        const { refreshToken } = req.cookies
+        const { refreshToken } = req.cookies;
         if (!refreshToken) {
             return res.status(200).json(getRes(31, { message: 'Token not found' }));
         }
@@ -148,7 +148,7 @@ exports.refresh = async (req, res) => {
         const userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({ ...userDto })
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
-        res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+        res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, domain: '.printapp.store'})
         return res.status(200).json(getRes(0, { data: { ...tokens, user: userDto } }))
     } catch (err) {
         return res.status(500).json(getRes(100, {error: err.message}))
@@ -170,7 +170,7 @@ exports.getUsers = async (req, res) => {
 exports.getUser = async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
-        return res.status(200).json(getRes(0, { data: { email: user.email, id: user.id, name: user.name }}));
+        return res.status(200).json(getRes(0, { data: { email: user.email, id: user.id, name: user.name, isAdmin: user.isAdmin }}));
     } catch (err) {
         return res.status(500).json(getRes(100,{error: err.message}))
     }

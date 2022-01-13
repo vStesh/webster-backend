@@ -13,11 +13,18 @@ const app = express();
 const clientDir = '../client/build';
 const imageDir = '../img';
 
+
+app.use(cors({
+    credentials: true,
+    origin: ['http://localhost:3000', 'http://my.printapp.store', 'http://img.printapp.store', 'http://api.printapp.store', 'http://printapp.store']
+}));
+
 // app.all('*', function(req, res, next) {
 //     let origin = req.get('origin');
 //     console.log(origin);
+//     res.header('Access-Control-Allow-Credentials', true);
 //     res.header('Access-Control-Allow-Origin', origin);
-//     res.header('Access-Control-Allow-Origin', "*");
+//     // res.header('Access-Control-Allow-Origin', "*");
 //     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 //     res.header('Access-Control-Allow-Headers', 'Content-Type');
 //     next();
@@ -27,9 +34,20 @@ const imageDir = '../img';
 
 app.use(express.json({ extended: true }));
 // app.use('/img', express.static(imageDir));
-app.use(fileUpload());
+app.use(fileUpload({}));
 app.use(cookieParser());
-app.use(cors());
+// let corsOptions;
+// app.all('*', function(req, res, next) {
+//     let origin = req.get('origin');
+//     corsOptions = {
+//         credentials: true,
+//         origin: origin
+//     }
+//     console.log(origin);
+//     next();
+// });
+
+
 
 // app.use('/api', cors, require('./routes/api.routes'));
 app.use('/api', require('./routes/api.routes'));

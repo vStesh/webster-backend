@@ -6,7 +6,7 @@ const PriceSchema = new Schema({
     size: { type: Schema.Types.ObjectId, ref: 'Size' },
     type: { type: Schema.Types.ObjectId, ref: 'Type' },
     price: { type: Number, required: true },
-    currency: { enum: ['UAH'], default: 0 },
+    currency: { type: String, enum: ['UAH'], default: 'UAH' },
     createdAt: {type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now },
     deletedAt: { type: Date, default: null }

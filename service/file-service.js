@@ -14,9 +14,10 @@ class FileService {
         return res.status(401).json(getRes(100, { error: err.message }))
     }
   }
-  savePhotos() {
+  savePhotos(file, id) {
     try {
-      const fileName = uuidv4() + '.png';
+      const type = file.name.split('.').pop();
+      const fileName = `${id}-${uuidv4()}.${type}`;
       const filePath = path.resolve(config.STORAGE_FILES, 'photos', fileName);
       file.mv(filePath)
       return this.getPath() + 'photos/' + fileName
@@ -25,7 +26,7 @@ class FileService {
     }
   }
   getPath() {
-    return 'http://img.printapp.store/';
+    return process.env.IMG_PATH || 'http://img.printapp.store/';
   }
 }
 

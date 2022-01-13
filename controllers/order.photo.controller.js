@@ -113,7 +113,7 @@ exports.updateOrderPhoto = async (req, res) => {
                 type: getType,
                 price: getPrice
             }
-        }, { new: true }).populate(['order', 'photo'])
+        }, { new: true })
         return res.status(200).json(getRes(0, { message: 'The OrderPhoto has been successfully updated', data: order_photo }))
     } catch (err) {
         return res.status(400).json(getRes(100, { error: err.message }))
